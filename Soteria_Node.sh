@@ -38,7 +38,7 @@ sleep 2
 # User and directories
 cecho "YELLOW" "Creating a soteria user and group..."
 sleep 1
-id -u soteria &>/dev/null || adduser --system --group soteria
+id -u soteria &>/dev/null || sudo adduser --system --group soteria
 sudo mkdir -p /usr/bin/soteria.d
 cd /tmp
 
@@ -62,12 +62,12 @@ echo 'maxconnections=50' >> soteria.conf
 cecho "YELLOW" "Creating the directories and Soteria configuration file..."
 sleep 2
 sudo mkdir -p /root/.soteria /home/user/.soteria /etc/soteria /var/lib/soteriad
-cp soteria.conf /root/.soteria
-cp soteria.conf /home/user/.soteria
-cp soteria.conf /etc/soteria/soteria.conf
+sudo cp soteria.conf /root/.soteria
+sudo cp soteria.conf /home/user/.soteria
+sudo cp soteria.conf /etc/soteria/soteria.conf
 sudo chown soteria:soteria /etc/soteria/soteria.conf
-touch /var/lib/soteriad/soteriad.pid
-chown -R soteria:soteria /var/lib/soteriad
+sudo touch /var/lib/soteriad/soteriad.pid
+sudo chown -R soteria:soteria /var/lib/soteriad
 
 # Systemd service
 cecho "YELLOW" "Creating the systemd service for automatic start-up at boot"
@@ -77,9 +77,9 @@ sudo wget -q -O /etc/systemd/system/soteriad.service https://raw.githubuserconte
 
 cecho "YELLOW" "Enabling and starting the service"
 sleep 2
-systemctl daemon-reload
-systemctl enable soteriad.service
-systemctl start soteriad.service
+sudo systemctl daemon-reload
+sudo systemctl enable soteriad.service
+sudo systemctl start soteriad.service
 
 # Final messages
 cecho "YELLOW" "Installation is complete!"
