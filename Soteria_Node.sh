@@ -39,7 +39,7 @@ sleep 2
 cecho "YELLOW" "Creating a soteria user and group..."
 sleep 1
 id -u soteria &>/dev/null || adduser --system --group soteria
-mkdir -p /usr/bin/soteria.d
+sudo mkdir -p /usr/bin/soteria.d
 cd /tmp
 
 # Download daemon
@@ -50,9 +50,9 @@ cecho "YELLOW" "Unzipping and installing..."
 sleep 1
 unzip -q soteria-daemon-oldlinux64.zip
 cd soteriad
-cp -r . /usr/bin/soteria.d
-ln -sf /usr/bin/soteria.d/bin/soteria-cli /usr/bin/soteria-cli
-ln -sf /usr/bin/soteria.d/bin/soteriad /usr/bin/soteriad
+sudo cp -r . /usr/bin/soteria.d
+sudo ln -sf /usr/bin/soteria.d/bin/soteria-cli /usr/bin/soteria-cli
+sudo ln -sf /usr/bin/soteria.d/bin/soteriad /usr/bin/soteriad
 
 # Config file
 echo -n 'rpcpassword=' > soteria.conf
@@ -61,11 +61,11 @@ echo 'maxconnections=50' >> soteria.conf
 
 cecho "YELLOW" "Creating the directories and Soteria configuration file..."
 sleep 2
-mkdir -p /root/.soteria /home/user/.soteria /etc/soteria /var/lib/soteriad
+sudo mkdir -p /root/.soteria /home/user/.soteria /etc/soteria /var/lib/soteriad
 cp soteria.conf /root/.soteria
 cp soteria.conf /home/user/.soteria
 cp soteria.conf /etc/soteria/soteria.conf
-chown soteria:soteria /etc/soteria/soteria.conf
+sudo chown soteria:soteria /etc/soteria/soteria.conf
 touch /var/lib/soteriad/soteriad.pid
 chown -R soteria:soteria /var/lib/soteriad
 
@@ -73,7 +73,7 @@ chown -R soteria:soteria /var/lib/soteriad
 cecho "YELLOW" "Creating the systemd service for automatic start-up at boot"
 sleep 2
 cd /etc/systemd/system
-wget -q https://raw.githubusercontent.com/Soteria-Network/Soteria-HiveOS-Full-Node/main/soteriad.service
+sudo wget -q -O /etc/systemd/system/soteriad.service https://raw.githubusercontent.com/Soteria-Network/Soteria-HiveOS-Full-Node/main/soteriad.service
 
 cecho "YELLOW" "Enabling and starting the service"
 sleep 2
