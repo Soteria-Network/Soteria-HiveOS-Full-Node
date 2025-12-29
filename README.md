@@ -24,7 +24,7 @@ The goal is to help strengthen and support the Soteria network. Many of us alrea
 - **Internet connection** (stable, 24/7).  
 - **Sufficient disk space** for blockchain data.  At least 20GB
 - **Soteria daemon binary**.  
-- **Open your firewall/router port forward 8323
+- **Open your firewall/router port forward 8323.**
 
 ##### This is the P2P port for Soteria Network, not RPC. It must be open/forwarded so your node can connect with peers and strengthen the network.
 
