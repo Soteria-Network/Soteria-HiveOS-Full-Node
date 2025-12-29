@@ -46,10 +46,14 @@ cd /tmp
 cecho "YELLOW" "Downloading the daemon..."
 sleep 1
 wget -q https://github.com/Soteria-Network/Soteria/releases/download/v1.1.0/soteria-daemon-oldlinux64.zip
+sleep 1
+echo "Installing unzip"
+sudo apt update && sudo apt install unzip -y
+echo "unzip installed"
 cecho "YELLOW" "Unzipping and installing..."
 sleep 1
 unzip -q soteria-daemon-oldlinux64.zip
-cd soteriad
+cd soteria-daemon-oldlinux64 || cd soteriad
 sudo cp -r . /usr/bin/soteria.d
 sudo ln -sf /usr/bin/soteria.d/bin/soteria-cli /usr/bin/soteria-cli
 sudo ln -sf /usr/bin/soteria.d/bin/soteriad /usr/bin/soteriad
